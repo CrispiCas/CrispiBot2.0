@@ -7,7 +7,7 @@ from commands import logs, sendcommand, status, stop, verify, blacklist
 async def commands(message, client, prefix, owner):
 
 
-    await blacklist.check_blacklist(message, owner)
+    await blacklist.check_blacklist(message, owner, client)
 
     send = message.channel.send
     command = message.content.lower().startswith
@@ -65,12 +65,7 @@ async def commands(message, client, prefix, owner):
         #verify
         elif command(f'{prefix}verify'):
             await verify.verify(message)
-
+        
+        #add blacklist command
         elif command(f'{prefix}adbl'):
             await blacklist.adbl(message, prefix, owner)
-
-        elif command(f'{prefix}blacklist'):
-            await blacklist.sendblacklist(message)
-
-        elif command(f'clear'):
-            await blacklist.clear_command(message)

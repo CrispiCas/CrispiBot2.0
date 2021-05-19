@@ -4,7 +4,7 @@ import time
 import discord
 
 
-con = sqlite3.connect('/Users/username/Documents/Python/CrispiBot2.0/databases/blacklistdb.sqlite')
+con = sqlite3.connect('/Users/olesiemens/Documents/Python/CrispiBot2.0/databases/blacklistdb.sqlite')
 
 cur = con.cursor()
 
