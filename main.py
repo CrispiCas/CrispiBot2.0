@@ -24,6 +24,4 @@ async def on_ready():
 async def on_message(message):
     await Commands.commands(message, client, prefix, owner)
 
-    print(message.author)
-
 client.run(token)
