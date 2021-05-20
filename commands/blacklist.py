@@ -2,13 +2,17 @@ import sqlite3
 from discord.message import Message
 import time
 import discord
+import toml
+
+config = toml.load('./config/config.toml')
+path = config['path']
 
 
-con = sqlite3.connect('/Users/olesiemens/Documents/Python/CrispiBot2.0/databases/blacklistdb.sqlite')
+con = sqlite3.connect(path)
 
 cur = con.cursor()
 
-async def check_blacklist(message, owner):
+async def check_blacklist(message, owner, client):
 
     mes = str(message.content.lower()).replace('.', '').replace(' ', '')
     for line in open('./data/blacklist.txt'):
@@ -47,7 +51,7 @@ async def clear_command(message, prefix):
 async def blacklistbd(message):
     cur.execute("CREATE TABLE IF NOT EXISTS user (name text PRIMARY KEY, blacklistnr number)")
 
-    username = message.author
+    username = message.author.id
 
     try:
         cur.execute(f"INSERT INTO user VALUES ('{username}', 0)")
@@ -64,5 +68,50 @@ async def blacklistbd(message):
     checknr = str(checknr).removeprefix('[(').removesuffix(',)]')
     checknr = int(checknr)
 
+    if checknr == 10:
+        await message.channel.send('Bitte keine Wörter mehr in die Richtung')
+
     if checknr == 15:
-        pass
+        await message.channel.send('Letzt Verwarnung...')
+
+    if checknr == 16:
+        await message.author.add_roles(discord.utils.get(message.author.guild.roles, name='Yeee ich hab was böses getan'))
+
+
+async def reset_blacklistnr(message, prefix, owner):
+    id = str(message).split(' ')[12]
+    userID = id.split('=')[1]
+    if userID == owner:
+        username = message.content.replace(f'{prefix}resetblnr ', '') 
+        checknr = cur.execute(f"SELECT blacklistnr FROM user WHERE name = '{username}'")
+        checknr = cur.fetchall()
+        checknr = str(checknr).removeprefix('[(').removesuffix(',)]')
+        await message.channel.send('Die Blacklistnr wurde resetet')
+        try:
+            checknr = int(checknr)
+        except:
+            await message.channel.send('***__Error__*** Falsche User Id')
+        cur.execute(f'UPDATE user SET blacklistnr = blacklistnr - {checknr} WHERE name = "{username}"')
+        con.commit()
+
+    else:
+        await message.channel.send('Du hast keine rechte hehe')
+
+
+async def blavklistnr_abfrage(message, prefix, owner):
+    id = str(message).split(' ')[12]
+    userID = id.split('=')[1]
+    if userID == owner:
+        username = message.content.replace(f'{prefix}getblnr ', '') 
+        checknr = cur.execute(f"SELECT blacklistnr FROM user WHERE name = '{username}'")
+        checknr = cur.fetchall()
+        checknr = str(checknr).removeprefix('[(').removesuffix(',)]')
+        userId = message.content.replace(f'{prefix}getblnr ', '')
+        try:
+            checknr = int(checknr)
+            await message.channel.send(f'{userId} hat {checknr} Blacklisted wörter geschrieben')
+        except:
+            await message.channel.send('***__Error__*** Falsche User Id')
+
+    else:
+        await message.channel.send('Du hast keine rechte hehe')

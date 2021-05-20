@@ -69,3 +69,11 @@ async def commands(message, client, prefix, owner):
         #add blacklist command
         elif command(f'{prefix}adbl'):
             await blacklist.adbl(message, prefix, owner)
+
+        #reset bl number
+        elif command(f'{prefix}resetblnr '):
+            await blacklist.reset_blacklistnr(message, prefix, owner)
+
+        #getblnr
+        elif command(f'{prefix}getblnr'):
+            await blacklist.blavklistnr_abfrage(message, prefix, owner)
