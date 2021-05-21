@@ -1,3 +1,4 @@
+from os import replace
 import sqlite3
 from discord.message import Message
 import time
@@ -14,7 +15,7 @@ cur = con.cursor()
 
 async def check_blacklist(message, owner, client):
 
-    mes = str(message.content.lower()).replace('.', '').replace(' ', '')
+    mes = str(message.content.lower()).replace('.', '').replace(' ', '').replace('-', '').replace('_', '')
     for line in open('./data/blacklist.txt'):
         if mes.__contains__(line.replace("\n", "")):
             await blacklistbd(message)
@@ -49,21 +50,21 @@ async def clear_command(message, prefix):
 
 
 async def blacklistbd(message):
-    cur.execute("CREATE TABLE IF NOT EXISTS user (name text PRIMARY KEY, blacklistnr number)")
+    cur.execute("CREATE TABLE IF NOT EXISTS blacklistwords (name text PRIMARY KEY, blacklistnr number)")
 
     username = message.author.id
 
     try:
-        cur.execute(f"INSERT INTO user VALUES ('{username}', 0)")
+        cur.execute(f"INSERT INTO blacklistwords VALUES ('{username}', 0)")
         con.commit()
     except:
         pass
 
     
-    cur.execute(f'UPDATE user SET blacklistnr = blacklistnr + 1 WHERE name = "{username}"')
+    cur.execute(f'UPDATE blacklistwords SET blacklistnr = blacklistnr + 1 WHERE name = "{username}"')
     con.commit()
 
-    checknr = cur.execute(f"SELECT blacklistnr FROM user WHERE name = '{username}'")
+    checknr = cur.execute(f"SELECT blacklistnr FROM blacklistwords WHERE name = '{username}'")
     checknr = cur.fetchall()
     checknr = str(checknr).removeprefix('[(').removesuffix(',)]')
     checknr = int(checknr)
@@ -83,14 +84,17 @@ async def reset_blacklistnr(message, prefix, owner):
     userID = id.split('=')[1]
     if userID == owner:
         username = message.content.replace(f'{prefix}resetblnr ', '') 
-        checknr = cur.execute(f"SELECT blacklistnr FROM user WHERE name = '{username}'")
+        checknr = cur.execute(f"SELECT blacklistnr FROM blacklistwords WHERE name = '{username}'")
         checknr = cur.fetchall()
         checknr = str(checknr).removeprefix('[(').removesuffix(',)]')
-        await message.channel.send('Die Blacklistnr wurde resetet')
+        await message.channel.send(f'Die Blacklistnr von {username} wurde resetet')
         try:
             checknr = int(checknr)
         except:
-            await message.channel.send('***__Error__*** Falsche User Id')
+            embed = discord.Embed(colour=discord.Colour(0xffa8), url="https://discordapp.com")
+            embed.add_field(name = '***__Error__***', value='Falsche User Id oder der User ist nicht vorhanden')
+            await message.channel.send(embed = embed)
+
         cur.execute(f'UPDATE user SET blacklistnr = blacklistnr - {checknr} WHERE name = "{username}"')
         con.commit()
 
@@ -102,8 +106,8 @@ async def blavklistnr_abfrage(message, prefix, owner):
     id = str(message).split(' ')[12]
     userID = id.split('=')[1]
     if userID == owner:
-        username = message.content.replace(f'{prefix}getblnr ', '') 
-        checknr = cur.execute(f"SELECT blacklistnr FROM user WHERE name = '{username}'")
+        username = message.content.lower().replace(f'{prefix}getblnr ', '')
+        checknr = cur.execute(f"SELECT blacklistnr FROM blacklistwords WHERE name = '{username}'")
         checknr = cur.fetchall()
         checknr = str(checknr).removeprefix('[(').removesuffix(',)]')
         userId = message.content.replace(f'{prefix}getblnr ', '')
@@ -111,7 +115,10 @@ async def blavklistnr_abfrage(message, prefix, owner):
             checknr = int(checknr)
             await message.channel.send(f'{userId} hat {checknr} Blacklisted wörter geschrieben')
         except:
-            await message.channel.send('***__Error__*** Falsche User Id')
+            embed = discord.Embed(colour=discord.Colour(0xffa8), url="https://discordapp.com")
+            embed.add_field(name = '***__Error__***', value='Falsche UserID oder User nicht in der Datenbank hinterlegt')
+
+            await message.channel.send(embed = embed)
 
     else:
         await message.channel.send('Du hast keine rechte hehe')

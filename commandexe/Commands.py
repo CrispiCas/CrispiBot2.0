@@ -1,6 +1,6 @@
 import discord
-from commands import dice, docs, github, hash, help, hicommand, idea 
-from commands import logs, sendcommand, status, stop, verify, blacklist
+from commands import docs, hash, help, idea 
+from commands import status, stop, verify, blacklist, functions, adcmd
     
     
     
@@ -12,7 +12,7 @@ async def commands(message, client, prefix, owner):
     send = message.channel.send
     command = message.content.lower().startswith
 
-    logs.logs(message)
+    functions.logs(message)
 
 
 
@@ -21,14 +21,19 @@ async def commands(message, client, prefix, owner):
         return
 
     else:
+        if command(prefix):
+            await adcmd.commands(message, prefix)
+
+        elif command(f'>adcmd'):
+            await adcmd.ad_cmd(message)
 
         #helpcommand
-        if command(f'{prefix}help'):
+        elif command(f'{prefix}help'):
             await help.help_command(message, prefix)
 
         #hi command
         elif command(f'{prefix}hi'):
-            await hicommand.test(message)
+            await functions.test(message)
 
         #idea command
         elif command(f'{prefix}idee'):
@@ -36,7 +41,7 @@ async def commands(message, client, prefix, owner):
 
         #dice
         elif command(f'{prefix}dice'):
-            await dice.the_dice(message, prefix)
+            await functions.the_dice(message, prefix)
 
         #hash encoder
         elif command(f'{prefix}hash: ') or message.content.startswith(f'{prefix}hash '):
@@ -48,7 +53,7 @@ async def commands(message, client, prefix, owner):
 
         #github command
         elif command(f'{prefix}github'):
-            await github.GitHub_command(message, prefix)
+            await functions.GitHub_command(message, prefix)
 
         #status
         elif command(f'{prefix}status'):
@@ -60,7 +65,7 @@ async def commands(message, client, prefix, owner):
 
         #send command
         elif command(f'{prefix}send'):
-            await sendcommand.message_send(message, client, send)
+            await functions.message_send(message, client, send)
 
         #verify
         elif command(f'{prefix}verify'):

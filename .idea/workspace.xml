@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44fea8dc-7492-49fa-85ae-bd443f1160fd" name="Default Changelist" comment="Update 2 small fixes" />
+    <list default="true" id="44fea8dc-7492-49fa-85ae-bd443f1160fd" name="Default Changelist" comment="Update 3 new owner commands" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621450052327</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update 3 new owner commands">
+      <created>1621496155181</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621496155181</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,6 +101,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update 1 Datenbank für die Blacklist" />
     <MESSAGE value="Update 2 small fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 2 small fixes" />
+    <MESSAGE value="Update 3 new owner commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 3 new owner commands" />
   </component>
 </project>
