@@ -21,11 +21,11 @@ async def commands(message, client, prefix, owner):
         return
 
     else:
-        if command(prefix):
+        if message.content.lower().startswith(prefix):
             await adcmd.commands(message, prefix)
 
-        elif command(f'>adcmd'):
-            await adcmd.ad_cmd(message)
+        if command(f'>adcmd'):
+            await adcmd.ad_cmd(message, owner)
 
         #helpcommand
         elif command(f'{prefix}help'):

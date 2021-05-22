@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44fea8dc-7492-49fa-85ae-bd443f1160fd" name="Default Changelist" comment="Update 3 new owner commands" />
+    <list default="true" id="44fea8dc-7492-49fa-85ae-bd443f1160fd" name="Default Changelist" comment="Update 4 a add command who added a command in a database">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621496155181</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update 4 a add command who added a command in a database">
+      <created>1621633410841</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1621633410841</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,6 +111,7 @@
     <MESSAGE value="Update 1 Datenbank für die Blacklist" />
     <MESSAGE value="Update 2 small fixes" />
     <MESSAGE value="Update 3 new owner commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 3 new owner commands" />
+    <MESSAGE value="Update 4 a add command who added a command in a database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 4 a add command who added a command in a database" />
   </component>
 </project>
