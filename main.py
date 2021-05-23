@@ -15,6 +15,7 @@ print(prefix)
 
 client = discord.Client()
 
+
 @client.event
 async def on_ready():
     print('huhu ich bin online')
