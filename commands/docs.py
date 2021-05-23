@@ -15,7 +15,7 @@ async def docs(message):
 
     elif message.content.lower() == f'{prefix}docs delete':
         embed = discord.Embed(colour=discord.Colour(0xffa8), url="https://discordapp.com")
-        embed.add_field(name=f'Die docs zu delet',
+        embed.add_field(name=f'Die docs zu delete',
                         value='[deleted message reverences](https://discordpy.readthedocs.io/en/stable/api.html#deletedreferencedmessage), '
                               '[message delete event](https://discordpy.readthedocs.io/en/stable/api.html#rawmessagedeleteevent) ')
 

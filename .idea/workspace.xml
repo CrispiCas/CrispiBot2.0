@@ -97,7 +97,21 @@
       <option name="project" value="LOCAL" />
       <updated>1621695301740</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Test for the Webhook">
+      <created>1621784414271</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621784414271</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Test for the Webhook">
+      <created>1621784615543</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621784615543</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +132,8 @@
     <MESSAGE value="Update 3 new owner commands" />
     <MESSAGE value="Update 4 a add command who added a command in a database" />
     <MESSAGE value="Update 5 small Bug fixes only the owner can use the ad command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 5 small Bug fixes only the owner can use the ad command" />
+    <MESSAGE value="Test for the Webhook" />
+    <MESSAGE value="Test for the Webhook ..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Test for the Webhook ..." />
   </component>
 </project>
