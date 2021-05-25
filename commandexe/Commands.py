@@ -1,6 +1,5 @@
 import discord
-from commands import docs, hash, help, idea 
-from commands import status, stop, verify, blacklist, functions, adcmd
+from commands import adcmd, blacklist, docs, functions, hash, help, idea, status, stop, verify
     
     
     

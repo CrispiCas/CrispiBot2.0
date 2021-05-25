@@ -15,13 +15,10 @@ print(prefix)
 
 client = discord.Client()
 
-
 @client.event
 async def on_ready():
     print('huhu ich bin online')
- 
     await client.change_presence(activity=discord.Game(name=status1))
-
 
 @client.event
 async def on_message(message):
